@@ -8,7 +8,7 @@ namespace MirnaApp.controllers
     {
         [HttpGet]
         public  string Get(){
-            return "Seja bem vindo a mirna";
+            return "Seja bem vindo a mirna"; 
         }
     }
 }
