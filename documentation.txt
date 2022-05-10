@@ -1,0 +1,43 @@
+mongodb+srv://API:YXsGUUmagZivjzEm@cluster0.miyoa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+SELECT * FROM dash WHERE Name = MirnaBeta
+DashBoards
+dash
+INSERT dash IN Name ID[KEY] Description VALUES ProcSelect 453435 Testando_A_procAqui END
+Configuração inicial
+
+* MirnaBeta
+
+
+SERIALIZAÇÃO PADRÃO 
+
+# VALIDAÇÃO
+
+Como um bom ORM ele deve manter a integridade do banco de dados logo ele antes de fazer qualquer alteração 
+deve se verificar: 
+
+     * A quantidade de colunas devem ser as mesmas (pegar o primeiro registro como referencia)
+     * Se for inserir verificar se o valor antigo é o mesmo (pegar o primeiro registro como referencia)
+
+Logo não tem como adicionar uma coluna a mais, já que antes desta operação ele faz a validação dos campos
+de dados.
+
+# Fechando uma Query 
+
+Para evitar que a Query continue sendo processada é bom fechar ela com o comando END , o mesmo vale se 
+a query continuar outro comando diferente do comando inicial por exemplo: 
+     INSERT dash IN Name ID[KEY] Description VALUES ProcSelect 453435 Testando_A_procAqui END 
+     SELECT * FROM dash WHERE Name = MirnaBeta END 
+
+
+! RESOLVER BUG !
+
+Ter suporte para espaços ou verificar se a proxima palavra pertence a coleção
+
+/https://www.mongodb.com/blog/post/quick-start-c-and-mongodb--read-operations
+
+id                      │ Name             │ ID key  │ Description                     │
+              ├──────────────────────────┼──────────────────┼─────────┼─────────────────────────────────┤
+              │ 61396c78f93a168084ef3e04 │ teste1           │ 3424    │ NoSQL with relationshiop basics │
+              │ 613974f1b377d5f915f36a50 │ Incluir arquivos │ 3434    │ teste                           │
+              │ 613974f1b377d5f915f36a51 │ Nova request     │ 934     │ vai la esperto                  │
+              │ 61397753fe4de67e4f16ffd1 │ Abertura de Dash │ 323434  │ teste
