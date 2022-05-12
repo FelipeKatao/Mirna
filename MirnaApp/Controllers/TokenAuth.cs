@@ -39,7 +39,10 @@ namespace MirnaApp.controllers
         public string Get(string token){
             results.Clear();
             string testToken = "Token not is valid to context!";
-            usercon.SilverValidate(token);
+            if(usercon.SilverValidate(token))
+            {
+                testToken = "Token is valid to context";
+            }
             return testToken;
         }
     }
