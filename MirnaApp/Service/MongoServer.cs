@@ -7,7 +7,7 @@ namespace service
 {
     public class MongoSilverConnection
     {
-        public List<dynamic> connectionSilver(string stoken){
+        public List<dynamic> connectionSilver(){
              return readAlldata();
         }
         private List<dynamic> readAlldata(){

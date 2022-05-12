@@ -28,13 +28,19 @@ namespace MirnaApp.controllers
     [ApiController]
     public class silverconController : ControllerBase
     {
+        List<dynamic> results = new List<dynamic>();
         MongoSilverConnection consilver = new MongoSilverConnection();
+        ContextUsers usercon  = new ContextUsers();
         [HttpGet]
         public  string Get(){
-            List<dynamic> results = new List<dynamic>();
-            
-            return consilver.connectionSilver("")[0][1]+" "; 
+            return consilver.connectionSilver()[0][1]+" "; 
         }
-
+        [HttpGet("{token}")]
+        public string Get(string token){
+            results.Clear();
+            string testToken = "Token not is valid to context!";
+            usercon.SilverValidate(token);
+            return testToken;
+        }
     }
 }
