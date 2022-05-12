@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using service;
 
+
 namespace MirnaApp.controllers
 {
     [Route("/")]
@@ -15,11 +16,16 @@ namespace MirnaApp.controllers
     }
     [Route("/[controller]")]
     [ApiController]
-    public class Token : ControllerBase
+    public class TokenController : ControllerBase
     {
         [HttpGet]
         public  string Get(){
             return "Token: F455dhX45-001-009-009-0dF"; 
+        }
+        [HttpGet("{data}")]
+        public string Get(string data){
+
+            return "Redirect from "+data;
         }
 
     }
@@ -42,6 +48,7 @@ namespace MirnaApp.controllers
             if(usercon.SilverValidate(token))
             {
                 testToken = "Token is valid to context";
+                Response.Redirect("https://localhost:7044/Token/"+token,false);
             }
             return testToken;
         }
