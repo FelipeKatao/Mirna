@@ -80,7 +80,7 @@ namespace MirnaApp.controllers
                         SlidingExpiration = TimeSpan.FromSeconds(1200)
                     });
                     string dataResponse = usCtx[0].database+""+usCtx[0].silverString+""+usCtx[0].token;
-                    Response.Redirect("https://localhost:7044/Token/" + dataResponse, false);
+                    Response.Redirect("/Token/" + dataResponse, false);
                     return "Silver data is acess data type";
                 }
             }
