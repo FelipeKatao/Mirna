@@ -17,7 +17,7 @@ namespace MirnaApp.controllers
         }
     }
     [Route("/[controller]")]
-    [Route("/[controller]/data")]
+    [Route("/[controller]/data/resposta")]
     [ApiController]
     public class TokenController : ControllerBase
     {
@@ -27,12 +27,13 @@ namespace MirnaApp.controllers
         {
             _memory = memorycache;
         }
+       
         [HttpGet("{data}")]
         public string Get(string data)
         {
             if (_memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
             {
-                _memory.Dispose();
+                _memory.Remove(SILVER_KEY);
                 return "Redirect from " + data;
             }
             else
@@ -72,13 +73,14 @@ namespace MirnaApp.controllers
                     List<UserContext> usCtx;
                     List<dynamic> resultsOftokens= consilver.connectionSilver();
                     usCtx = new();
-                    usCtx.Add(new() { token = resultsOftokens[1], silverString = resultsOftokens[2], database = "Dash" });
+                    usCtx.Add(new() { token = resultsOftokens[0][2]+"", silverString = resultsOftokens[0][2]+"", database = resultsOftokens[0][4]+"" });
                     _memory.Set(SILVER_KEY, usCtx, new MemoryCacheEntryOptions
                     {
                         AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(3900),
                         SlidingExpiration = TimeSpan.FromSeconds(1200)
                     });
-                    Response.Redirect("https://localhost:7044/Token/" + token, false);
+                    string dataResponse = usCtx[0].database+""+usCtx[0].silverString+""+usCtx[0].token;
+                    Response.Redirect("https://localhost:7044/Token/" + dataResponse, false);
                     return "Silver data is acess data type";
                 }
             }
