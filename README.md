@@ -21,3 +21,11 @@ Esse comando permite que você abra o banco para entradas de querys ou feche com
 Após fazer a abertura do banco de dados rode as querys registradas na sua conta da Mirna, elas são construidas e caso necessite de algum parametro passe pelo ultimo comando.
 Todos retornos desta etapa são feitos com Json permitindo o consumo pelo cliente, em qualquer linguagem de programação, iremos abordar isso mais a frente com exemplos prontos.
 
+## Suportes com outras tecnologias 
+As tecnologias que oferecemos suporte até o momento são:
+    -> MongoDb 
+    -> XML (arquivo local)
+    -> Firebase 
+    -> Json 
+Todos esses bancos de dados a mirna ira oferecer suporte, caso precise você pode utilizar diversos tipos
+de conexão para a mesma conta Mirna. 
