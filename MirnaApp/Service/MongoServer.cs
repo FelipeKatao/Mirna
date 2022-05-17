@@ -10,7 +10,7 @@ namespace service
         public List<dynamic> connectionSilver(){
              return readAlldata();
         }
-        private List<dynamic> readAlldata(){
+        internal List<dynamic> readAlldata(){
             List<dynamic> results = new List<dynamic>();
             var settings = MongoClientSettings.FromConnectionString("mongodb+srv://mirnasilver:yvOvHUcprUzZYGuU@mirnasilvertoken.zo7gk.mongodb.net/Mirnasilvertoken?retryWrites=true&w=majority");
             var client = new MongoClient(settings);

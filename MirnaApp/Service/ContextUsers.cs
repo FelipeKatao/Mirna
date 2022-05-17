@@ -24,5 +24,19 @@ namespace service{
             }
            return  _configurationCon.SilverValidation(false);
         }
+        public string ContextAssemblyString(string token,string data)
+        {
+            //mongodb://mirnasilver:<password>@mirnasilvertoken
+            List<dynamic> ConSilverdata = consilver.readAlldata();
+             foreach (var item in ConSilverdata)
+            {
+                //Ele verifica qual o token de string padrão definido pela chave
+                // StringData dentro do banco de dados da Mirna. 
+                if(item[5] == token){
+                   return data+token;
+                }
+            }
+            return "Error the token not exists in actual context";
+        }
     }
 }
