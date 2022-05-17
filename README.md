@@ -23,9 +23,10 @@ Todos retornos desta etapa são feitos com Json permitindo o consumo pelo client
 
 ## Suportes com outras tecnologias 
 As tecnologias que oferecemos suporte até o momento são:
-    -> MongoDb 
-    -> XML (arquivo local)
-    -> Firebase 
-    -> Json 
+    
+- MongoDb 
+- XML (arquivo local)
+- Firebase 
+- Json 
 Todos esses bancos de dados a mirna ira oferecer suporte, caso precise você pode utilizar diversos tipos
 de conexão para a mesma conta Mirna. 
