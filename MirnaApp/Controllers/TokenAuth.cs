@@ -17,28 +17,30 @@ namespace MirnaApp.controllers
         }
     }
     [Route("/[controller]")]
-    [Route("/[controller]/data/resposta")]
     [ApiController]
     public class TokenController : ControllerBase
     {
         private readonly IMemoryCache _memory;
         private const string SILVER_KEY = "silverKey";
+        MongoSilverConnection consilver = new MongoSilverConnection();
+        ReturnDataMongoDb monDb_server = new ReturnDataMongoDb();
         public TokenController(IMemoryCache memorycache)
         {
             _memory = memorycache;
         }
        
-        [HttpGet("{data}")]
-        public string Get(string data)
+        [HttpGet("{data}/{str}")]
+        public IActionResult Get(string data,string str)
         {
+            List<dynamic>? resultsOftokens = new List<dynamic>();
             if (_memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
             {
                 _memory.Remove(SILVER_KEY);
-                return "Redirect from " + data;
+                return Content( monDb_server.ReturnAllData(resultsOftokens[0][5]+str,resultsOftokens[0][4],resultsOftokens[0][6],"MONGO"));
             }
             else
             {
-                return "You put one Invalid Token or one expired Mirna Token, consult the our documentation";
+                return Content("You put one Invalid Token or one expired Mirna Token, consult the our documentation");
             }
         }
 
@@ -58,12 +60,12 @@ namespace MirnaApp.controllers
         MongoSilverConnection consilver = new MongoSilverConnection();
         ContextUsers usercon = new ContextUsers();
 
-        [HttpGet("{token}")]
-        public string Get(string token)
+        [HttpGet("{token}/{str}")]
+        public string Get(string token,string str)
         {
             if (usercon.SilverValidate(token) && _memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
             {
-                Response.Redirect("/Token/" + token, false);
+                Response.Redirect("/Token/" + token+"/"+str, false);
                 return "Silver Mirna data is ok!";
             }
             else
