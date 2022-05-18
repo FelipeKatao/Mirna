@@ -32,11 +32,18 @@ namespace MirnaApp.controllers
         [HttpGet("{data}/{str}")]
         public IActionResult Get(string data,string str)
         {
-            List<dynamic>? resultsOftokens = new List<dynamic>();
+            List<dynamic>? resultsOftokens = consilver.connectionSilver();
             if (_memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
             {
                 _memory.Remove(SILVER_KEY);
-                return Content( monDb_server.ReturnAllData(resultsOftokens[0][5]+str,resultsOftokens[0][4],resultsOftokens[0][6],"MONGO"));
+                foreach(var itemIterator in resultsOftokens)
+                {
+                    if(itemIterator[5] == data )
+                    {
+                        return Content( monDb_server.ReturnAllData(itemIterator[5]+str,itemIterator[4],itemIterator[6],"MONGO"));
+                    }
+                }
+                return Content("Error in load Database, please consult your variables name");
             }
             else
             {
