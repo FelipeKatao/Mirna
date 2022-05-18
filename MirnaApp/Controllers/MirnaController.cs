@@ -9,7 +9,7 @@ namespace MirnaApp.controllers
 {
     [Route("/Mirna")]
     [ApiController]
-    public class Mirna : ControllerBase
+    public class MirnaController : ControllerBase
     {
         [HttpGet]
         public string Get()
@@ -19,7 +19,7 @@ namespace MirnaApp.controllers
         [HttpGet("{token}/{str}")]
         public IActionResult Get(string token, string str)
         {
-            Redirect("/[silvercon]/connect/"+token+"/"+str);
+            Response.Redirect("https://localhost:7044/silvercon/connect/"+token+"/"+str);
             return Content(token);
         }
     }

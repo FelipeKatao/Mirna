@@ -30,24 +30,29 @@ namespace MirnaApp.controllers
         }
        
         [HttpGet("{data}/{str}")]
-        public IActionResult Get(string data,string str)
+        public dynamic Get(string data,string str)
         {
-            List<dynamic>? resultsOftokens = consilver.connectionSilver();
             if (_memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
             {
                 _memory.Remove(SILVER_KEY);
-                foreach(var itemIterator in resultsOftokens)
+
+                foreach(var itemIterator in consilver.readAlldata())
                 {
-                    if(itemIterator[5] == data )
+                    if(itemIterator[2] == data )
                     {
-                        return Content( monDb_server.ReturnAllData(itemIterator[5]+str,itemIterator[4],itemIterator[6],"MONGO"));
+                        var strCon = "mongodb+srv://"+str+itemIterator[5];
+                        var database = ""+itemIterator[4];
+                        string table = ""+itemIterator[6];
+                        var respone = monDb_server.ReturnAllData(strCon,database,table,"MONGO");
+                        //Retornar o valor de dados correto nesse caso queremos que retorne JSON
+                        return  respone;
                     }
                 }
-                return Content("Error in load Database, please consult your variables name");
+                return "Error in load Database, please consult your variables name";
             }
             else
             {
-                return Content("You put one Invalid Token or one expired Mirna Token, consult the our documentation");
+                return "You put one Invalid Token or one expired Mirna Token, consult the our documentation";
             }
         }
 

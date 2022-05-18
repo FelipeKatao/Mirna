@@ -20,7 +20,7 @@ namespace service{
             {
                 results.Add(item);
             }
-            return cursor;
+            return results;
         }
     }
 }
