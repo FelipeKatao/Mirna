@@ -52,14 +52,15 @@ namespace MirnaApp.controllers
                            Data+="'Value "+DataBaseIndex+"':[{";
                            foreach(var itemX in item)
                            {
-                               Data+= "'"+itemX.Name+",";
+                               Data+= "'"+itemX.Name+"':";
                                Data += "'"+itemX.Value +"',";
                            }
                            Data = Data.Remove(Data.Length);
                            Data+="}],";
+                           DataBaseIndex+=1;
                         }
-                         Data = Data.Remove(Data.Length);
-                        return  Data; //new System.Collections.Generic.ICollectionDebugView<object>(respone).Items[0]
+                         Data+="}}";
+                        return  Data;
                     }
                 }
                 return "Error in load Database, please consult your variables name";
