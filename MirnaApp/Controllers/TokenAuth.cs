@@ -44,16 +44,16 @@ namespace MirnaApp.controllers
                         var database = ""+itemIterator[4];
                         string table = ""+itemIterator[6];
                         var respone = monDb_server.ReturnAllData(strCon,database,table,"MONGO");
-                        string Data="{'Data':{";
+                        string Data="{\"Data\":{";
                         int DataBaseIndex =0;
                         //Retornar o valor de dados correto nesse caso queremos que retorne JSON
                         foreach(var item in respone)
                         {
-                           Data+="'Value "+DataBaseIndex+"':[{";
+                           Data+="\"Value "+DataBaseIndex+"\":[{";
                            foreach(var itemX in item)
                            {
-                               Data+= "'"+itemX.Name+"':";
-                               Data += "'"+itemX.Value +"',";
+                               Data+= "\""+itemX.Name+"\":";
+                               Data += "\""+itemX.Value +"\",";
                            }
                            Data = Data.Remove(Data.Length-1);
                            Data+="}],";
