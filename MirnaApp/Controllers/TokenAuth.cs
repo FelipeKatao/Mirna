@@ -46,7 +46,7 @@ namespace MirnaApp.controllers
                         var respone = monDb_server.ReturnAllData(strCon,database,table,"MONGO");
                         string Data="{\"Data\":{";
                         int DataBaseIndex =0;
-                        //Retornar o valor de dados correto nesse caso queremos que retorne JSON
+
                         foreach(var item in respone)
                         {
                            Data+="\"Value "+DataBaseIndex+"\":[{";
