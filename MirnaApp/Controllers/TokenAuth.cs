@@ -44,8 +44,22 @@ namespace MirnaApp.controllers
                         var database = ""+itemIterator[4];
                         string table = ""+itemIterator[6];
                         var respone = monDb_server.ReturnAllData(strCon,database,table,"MONGO");
+                        string Data="{'Data':{";
+                        int DataBaseIndex =0;
                         //Retornar o valor de dados correto nesse caso queremos que retorne JSON
-                        return  respone;
+                        foreach(var item in respone)
+                        {
+                           Data+="'Value "+DataBaseIndex+"':[{";
+                           foreach(var itemX in item)
+                           {
+                               Data+= "'"+itemX.Name+",";
+                               Data += "'"+itemX.Value +"',";
+                           }
+                           Data = Data.Remove(Data.Length);
+                           Data+="}],";
+                        }
+                         Data = Data.Remove(Data.Length);
+                        return  Data; //new System.Collections.Generic.ICollectionDebugView<object>(respone).Items[0]
                     }
                 }
                 return "Error in load Database, please consult your variables name";
