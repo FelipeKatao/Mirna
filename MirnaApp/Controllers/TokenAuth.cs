@@ -55,10 +55,11 @@ namespace MirnaApp.controllers
                                Data+= "'"+itemX.Name+"':";
                                Data += "'"+itemX.Value +"',";
                            }
-                           Data = Data.Remove(Data.Length);
+                           Data = Data.Remove(Data.Length-1);
                            Data+="}],";
                            DataBaseIndex+=1;
                         }
+                        Data = Data.Remove(Data.Length-1);
                          Data+="}}";
                         return  Data;
                     }
