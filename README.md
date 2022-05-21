@@ -21,6 +21,8 @@ Esse comando permite que você abra o banco para entradas de querys ou feche com
 Após fazer a abertura do banco de dados rode as querys registradas na sua conta da Mirna, elas são construidas e caso necessite de algum parametro passe pelo ultimo comando.
 Todos retornos desta etapa são feitos com Json permitindo o consumo pelo cliente, em qualquer linguagem de programação, iremos abordar isso mais a frente com exemplos prontos.
 
+Ps: A conexão ao banco expira após uma tentativa então se frizer uma conexão já aberta ela se fecha automaticamente, assim evitando uso de multiplos acessos com o mesmo token.
+
 ## Suportes com outras tecnologias 
 As tecnologias que oferecemos suporte até o momento são:
     
