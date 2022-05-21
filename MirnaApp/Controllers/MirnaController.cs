@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using model;
 using service;
+using Microsoft.AspNetCore.Cors;
 
 namespace MirnaApp.controllers
 {
     [Route("/Mirna")]
     [ApiController]
+    
     public class MirnaController : ControllerBase
     {
         private readonly IMemoryCache _memory;
@@ -24,11 +26,12 @@ namespace MirnaApp.controllers
             return "Welcome!! Please crete your Id Key in MirnaWeb.com ";
         }
         [HttpGet("{token}/{str}")]
+
         public void Get(string token, string str)
         {
             if (usercon.SilverValidate(token) && _memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
             {
-                Response.Redirect("/silvercon/connect/"+token+"/"+str);
+                Response.Redirect("/token/"+token+"/"+str);
             }    
         }
     }

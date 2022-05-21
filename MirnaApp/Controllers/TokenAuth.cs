@@ -94,7 +94,6 @@ namespace MirnaApp.controllers
         {
             if (usercon.SilverValidate(token) && _memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
             {
-                Response.Redirect("/Token/" + token+"/"+str, false);
                 return "Silver Mirna data is ok!";
             }
             else
