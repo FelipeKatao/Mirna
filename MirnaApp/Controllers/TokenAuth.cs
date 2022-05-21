@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using model;
 using service;
-
+using Newtonsoft.Json;
 namespace MirnaApp.controllers
 {
     [Route("/")]
@@ -61,6 +61,7 @@ namespace MirnaApp.controllers
                         }
                         Data = Data.Remove(Data.Length-1);
                          Data+="}}";
+                      
                         return  Data;
                     }
                 }
