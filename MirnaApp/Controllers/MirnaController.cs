@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Web;
 using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using model;
@@ -11,16 +10,26 @@ namespace MirnaApp.controllers
     [ApiController]
     public class MirnaController : ControllerBase
     {
+        private readonly IMemoryCache _memory;
+        private const string SILVER_KEY = "silverKey";
+        ContextUsers usercon = new ContextUsers();
+        public MirnaController(IMemoryCache memorycache)
+        {
+            _memory = memorycache;
+        }
+
         [HttpGet]
         public string Get()
         {
             return "Welcome!! Please crete your Id Key in MirnaWeb.com ";
         }
         [HttpGet("{token}/{str}")]
-        public IActionResult Get(string token, string str)
+        public void Get(string token, string str)
         {
-            Response.Redirect("https://localhost:7044/silvercon/connect/"+token+"/"+str);
-            return Content(token);
+            if (usercon.SilverValidate(token) && _memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
+            {
+                Response.Redirect("/silvercon/connect/"+token+"/"+str);
+            }    
         }
     }
 }
