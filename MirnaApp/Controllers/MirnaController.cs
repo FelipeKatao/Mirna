@@ -4,6 +4,7 @@ using Microsoft.Extensions.Caching.Memory;
 using model;
 using service;
 using Microsoft.AspNetCore.Cors;
+using QueryEditor;
 
 namespace MirnaApp.controllers
 {
