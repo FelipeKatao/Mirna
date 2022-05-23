@@ -10,6 +10,7 @@ namespace QueryEditor
         public void initial(string query)
         {
             //Insert here system of querys
+            //Add the logical of open database in there 
         }
     }
 }
