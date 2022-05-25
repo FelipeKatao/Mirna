@@ -17,13 +17,17 @@ namespace service
                 "Mongo",
                 cda
             };
+            int index_driver = 0;
             foreach (var item in DriversAcess)
             {
-                if(item == "MONGO")
+                if(item == type)
                 {
-                    
+                    index_driver=+1;
+                    break;
                 }
+                index_driver+=1;
             }
+            DriversAcess[index_driver]();
         }
     }
 }

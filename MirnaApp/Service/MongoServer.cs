@@ -2,16 +2,17 @@ using System.Collections.Generic;
 using System;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Interface;
 
 namespace service
 {
-    public class MongoSilverConnection
+    public class MongoSilverConnection:IdataServer
     {
         public List<dynamic> connectionSilver(){
              return readAlldata();
         }
-        //Adicionar aqui a condicional de token se não vai devolver tudo e isso vai quebrar a aplicação
-        internal List<dynamic> readAlldata(){
+
+        public List<dynamic> readAlldata(){
             List<dynamic> results = new List<dynamic>();
             var settings = MongoClientSettings.FromConnectionString("mongodb+srv://mirnasilver:yvOvHUcprUzZYGuU@mirnasilvertoken.zo7gk.mongodb.net/Mirnasilvertoken?retryWrites=true&w=majority");
             var client = new MongoClient(settings);

@@ -11,7 +11,7 @@ namespace QueryEditor
         {
             //Insert here system of querys
             //Add the logical of open database in there 
-
+            
             return "";
         }
     }
