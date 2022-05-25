@@ -24,6 +24,7 @@ namespace MirnaApp.controllers
         private const string SILVER_KEY = "silverKey";
         MongoSilverConnection consilver = new MongoSilverConnection();
         ReturnDataMongoDb monDb_server = new ReturnDataMongoDb();
+        DriverService _driver_con = new DriverService();
         public TokenController(IMemoryCache memorycache)
         {
             _memory = memorycache;
@@ -32,6 +33,7 @@ namespace MirnaApp.controllers
         [HttpGet("{data}/{str}")]
         public dynamic Get(string data,string str)
         {
+           
             if (_memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
             {
                 _memory.Remove(SILVER_KEY);
@@ -43,7 +45,9 @@ namespace MirnaApp.controllers
                         var strCon = "mongodb+srv://"+str+itemIterator[5];
                         var database = ""+itemIterator[4];
                         string table = ""+itemIterator[6];
-                        var respone = monDb_server.ReturnAllData(strCon,database,table,"MONGO");
+
+                        var respone =_driver_con.DriverCall(strCon,database,table,"MONGO");
+                        //var respone = monDb_server.ReturnAllData(strCon,database,table,"MONGO");
                         string Data="{\"Data\":{";
                         int DataBaseIndex =0;
 
