@@ -1,6 +1,5 @@
 # MIRNA WEB API PROJECT
-
-https://mongodb.github.io/mongo-csharp-driver/2.15/getting_started/
+[![SecurityCodeScan](https://github.com/FelipeKatao/Mirna/actions/workflows/securitycodescan.yml/badge.svg?branch=ApiMirnaWeb)](https://github.com/FelipeKatao/Mirna/actions/workflows/securitycodescan.yml)
 
 ## Como fazer o login com a Mirna API com Token de validação
 Para fazer o login com a formiga é necessário rodar a token de validação com a nossa tecnologia  que utiliza sistema para que somente quem tenha a posse deste token consiga realizar os acessos no banco de dados, para fazer o login rode o comando: 
