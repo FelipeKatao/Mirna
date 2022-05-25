@@ -5,13 +5,14 @@ namespace service
 {
     public class DriverService
     {
-        private delegate List<dynamic> Drivers();
+        private delegate dynamic Drivers(string connection,string dataBase,string table,string type);
 
         MongoSilverConnection mongCon = new MongoSilverConnection();
+        ReturnDataMongoDb MongoDbReturn = new ReturnDataMongoDb();
        
-        public void DriverCall(string type)
+        public void DriverCall(string connection,string dataBase,string table,string type)
         {
-            Drivers cda = new Drivers(mongCon.readAlldata);
+            Drivers cda = new Drivers(MongoDbReturn.ReturnAllData);
             List<dynamic> DriversAcess = new List<dynamic>()
             {
                 "Mongo",
@@ -27,7 +28,7 @@ namespace service
                 }
                 index_driver+=1;
             }
-            DriversAcess[index_driver]();
+            DriversAcess[index_driver](connection,dataBase,table,type);
         }
     }
 }
