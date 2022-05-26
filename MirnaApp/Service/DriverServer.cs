@@ -36,7 +36,8 @@ namespace service
             if(query.ToLower()!="NULL")
             {
                 Result  = new QueryExecuteMirna(query,Result);
-
+                string[] QueryData = query.Split('%');
+                //A partir daqui fazer o tratamento caso precise fazer as querys
             }
             return DriversAcess[index_driver+1](Result);
         }
