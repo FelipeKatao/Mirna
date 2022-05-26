@@ -6,13 +6,15 @@ using Interface;
 
 namespace service
 {
-    public class MongoSilverConnection:IdataServer
+    public class MongoSilverConnection : IdataServer
     {
-        public List<dynamic> connectionSilver(){
-             return readAlldata();
+        public List<dynamic> connectionSilver()
+        {
+            return readAlldata();
         }
 
-        public List<dynamic> readAlldata(){
+        public List<dynamic> readAlldata()
+        {
             List<dynamic> results = new List<dynamic>();
             var settings = MongoClientSettings.FromConnectionString("mongodb+srv://mirnasilver:yvOvHUcprUzZYGuU@mirnasilvertoken.zo7gk.mongodb.net/Mirnasilvertoken?retryWrites=true&w=majority");
             var client = new MongoClient(settings);
@@ -25,6 +27,27 @@ namespace service
                 results.Add(item);
             }
             return results;
+        }
+        public dynamic AssemblyData(dynamic value)
+        {
+            string Data = "{\"Data\":{";
+            int DataBaseIndex = 0;
+
+            foreach (var item in value)
+            {
+                Data += "\"Value " + DataBaseIndex + "\":[{";
+                foreach (var itemX in item)
+                {
+                    Data += "\"" + itemX.Name + "\":";
+                    Data += "\"" + itemX.Value + "\",";
+                }
+                Data = Data.Remove(Data.Length - 1);
+                Data += "}],";
+                DataBaseIndex += 1;
+            }
+            Data = Data.Remove(Data.Length - 1);
+            Data += "}}";
+            return Data;
         }
     }
 }

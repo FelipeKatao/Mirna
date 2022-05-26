@@ -4,10 +4,11 @@ using Interface;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
-namespace service{
+namespace service
+{
     public class ReturnDataMongoDb : IReturnData
     {
-        public dynamic ReturnAllData(string connection,string dataBase,string table,string type)
+        public dynamic ReturnAllData(string connection, string dataBase, string table, string type)
         {
             List<dynamic> results = new List<dynamic>();
             var settings = MongoClientSettings.FromConnectionString(connection);
@@ -21,6 +22,27 @@ namespace service{
                 results.Add(item);
             }
             return results;
+        }
+        public dynamic AssemblyData(dynamic value)
+        {
+            string Data = "{\"Data\":{";
+            int DataBaseIndex = 0;
+
+            foreach (var item in value)
+            {
+                Data += "\"Value " + DataBaseIndex + "\":[{";
+                foreach (var itemX in item)
+                {
+                    Data += "\"" + itemX.Name + "\":";
+                    Data += "\"" + itemX.Value + "\",";
+                }
+                Data = Data.Remove(Data.Length - 1);
+                Data += "}],";
+                DataBaseIndex += 1;
+            }
+            Data = Data.Remove(Data.Length - 1);
+            Data += "}}";
+            return Data;
         }
     }
 }

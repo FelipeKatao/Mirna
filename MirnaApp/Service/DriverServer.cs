@@ -6,17 +6,20 @@ namespace service
     public class DriverService
     {
         private delegate dynamic Drivers(string connection,string dataBase,string table,string type);
+        private delegate dynamic Driver_Assembly(dynamic value);
 
         MongoSilverConnection mongCon = new MongoSilverConnection();
         ReturnDataMongoDb MongoDbReturn = new ReturnDataMongoDb();
        
-        public void DriverCall(string connection,string dataBase,string table,string type)
+        public dynamic DriverCall(string connection,string dataBase,string table,string type)
         {
-            Drivers cda = new Drivers(MongoDbReturn.ReturnAllData);
+            Drivers ReturnMongo = new Drivers(MongoDbReturn.ReturnAllData);
+            Driver_Assembly MongoAssembly = new Driver_Assembly(MongoDbReturn.AssemblyData);
             List<dynamic> DriversAcess = new List<dynamic>()
             {
-                "Mongo",
-                cda
+                "MONGO",
+                ReturnMongo,
+                MongoAssembly
             };
             int index_driver = 0;
             foreach (var item in DriversAcess)
@@ -28,7 +31,8 @@ namespace service
                 }
                 index_driver+=1;
             }
-            DriversAcess[index_driver](connection,dataBase,table,type);
+            var Result = DriversAcess[index_driver](connection,dataBase,table,type);
+            return DriversAcess[index_driver+1](Result);
         }
     }
 }
