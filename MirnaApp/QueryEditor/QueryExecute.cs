@@ -2,12 +2,12 @@ using System;
 
 namespace QueryEditor
 {
-    public class QueryExecute{
-        public QueryExecute(string query,string acessData)
+    public class QueryExecuteMirna{
+        public QueryExecuteMirna(string query,dynamic value)
         {
-            initial(query,acessData);
+            initial(query,value);
         }
-        public string initial(string query,string acessData)
+        public dynamic initial(string query,dynamic value)
         {
             //Insert here system of querys
             //Add the logical of open database in there 

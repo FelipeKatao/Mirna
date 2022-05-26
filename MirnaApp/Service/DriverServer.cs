@@ -1,5 +1,6 @@
 using System;
 using service;
+using QueryEditor;
 
 namespace service
 {
@@ -11,7 +12,7 @@ namespace service
         MongoSilverConnection mongCon = new MongoSilverConnection();
         ReturnDataMongoDb MongoDbReturn = new ReturnDataMongoDb();
        
-        public dynamic DriverCall(string connection,string dataBase,string table,string type)
+        public dynamic DriverCall(string connection,string dataBase,string table,string type,string query)
         {
             Drivers ReturnMongo = new Drivers(MongoDbReturn.ReturnAllData);
             Driver_Assembly MongoAssembly = new Driver_Assembly(MongoDbReturn.AssemblyData);
@@ -32,6 +33,11 @@ namespace service
                 index_driver+=1;
             }
             var Result = DriversAcess[index_driver](connection,dataBase,table,type);
+            if(query.ToLower()!="NULL")
+            {
+                Result  = new QueryExecuteMirna(query,Result);
+
+            }
             return DriversAcess[index_driver+1](Result);
         }
     }
