@@ -24,6 +24,15 @@ Todos retornos desta etapa são feitos com Json permitindo o consumo pelo client
 
 Ps: A conexão ao banco expira após uma tentativa então se frizer uma conexão já aberta ela se fecha automaticamente, assim evitando uso de multiplos acessos com o mesmo token.
 
+##Manipulando Querys na Mirna 
+Caso você queira manipular Querys dentro da Mirna você precisa passar como parâmetro no lugar de null a query que deseja criar, neste caso para fazer um Insert básico na tabela a sintaxe é  
+<  Query > - < Nome do Campo> - < Valor >- < end >   
+Sempre colocando o separador '-' entre as palavras e SEM ESPAÇOS e as Keywords das Querys sempre todas em maiúsculas INSERT , DELETE, SELECT e ao finalizar a query finalize com END, sempre entre as querys, exemplo: 
+../Mirna/ < Token > / < Conexão Banco > /INSERT-DATABASE-campo_01-campoEndereco-90-END
+Neste pequeno exemplo ele faz a inserção de dois campos DATABASE E campoEndereco na tabela.
+
+Observação: Campos especiais como Espaço vazio ou caracteres especiais, a Mirna não possui suporte para tratamento nativo ainda estamos trabalhando para esses casos.
+
 ## Suportes com outras tecnologias 
 As tecnologias que oferecemos suporte até o momento são:
     

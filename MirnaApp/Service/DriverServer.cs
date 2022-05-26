@@ -33,10 +33,10 @@ namespace service
                 index_driver+=1;
             }
             var Result = DriversAcess[index_driver](connection,dataBase,table,type);
-            if(query.ToLower()!="NULL")
+            if(query.ToLower()!="null")
             {
                 Result  = new QueryExecuteMirna(query,Result);
-                string[] QueryData = query.Split('%');
+                string[] QueryData = query.Split('-');
                 //A partir daqui fazer o tratamento caso precise fazer as querys
             }
             return DriversAcess[index_driver+1](Result);
