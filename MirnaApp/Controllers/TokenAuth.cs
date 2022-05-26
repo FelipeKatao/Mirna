@@ -46,8 +46,7 @@ namespace MirnaApp.controllers
                         var database = ""+itemIterator[4];
                         string table = ""+itemIterator[6];
 
-                        var respone =_driver_con.DriverCall(strCon,database,table,itemIterator[7]);
-                        
+                        return _driver_con.DriverCall(strCon,database,table,itemIterator[7]);                       
                     }
                 }
                 return "Error in load Database, please consult your variables name";
