@@ -46,27 +46,8 @@ namespace MirnaApp.controllers
                         var database = ""+itemIterator[4];
                         string table = ""+itemIterator[6];
 
-                        var respone =_driver_con.DriverCall(strCon,database,table,"MONGO");
-                        //var respone = monDb_server.ReturnAllData(strCon,database,table,"MONGO");
-                        string Data="{\"Data\":{";
-                        int DataBaseIndex =0;
-
-                        foreach(var item in respone)
-                        {
-                           Data+="\"Value "+DataBaseIndex+"\":[{";
-                           foreach(var itemX in item)
-                           {
-                               Data+= "\""+itemX.Name+"\":";
-                               Data += "\""+itemX.Value +"\",";
-                           }
-                           Data = Data.Remove(Data.Length-1);
-                           Data+="}],";
-                           DataBaseIndex+=1;
-                        }
-                        Data = Data.Remove(Data.Length-1);
-                         Data+="}}";
-                      
-                        return  Data;
+                        var respone =_driver_con.DriverCall(strCon,database,table,itemIterator[7]);
+                        
                     }
                 }
                 return "Error in load Database, please consult your variables name";
