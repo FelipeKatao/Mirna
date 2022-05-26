@@ -30,8 +30,8 @@ namespace MirnaApp.controllers
             _memory = memorycache;
         }
        
-        [HttpGet("{data}/{str}")]
-        public dynamic Get(string data,string str)
+        [HttpGet("{data}/{str}/{query}")]
+        public dynamic Get(string data,string str,string query)
         {
            
             if (_memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
@@ -45,8 +45,9 @@ namespace MirnaApp.controllers
                         var strCon = "mongodb+srv://"+str+itemIterator[5];
                         var database = ""+itemIterator[4];
                         string table = ""+itemIterator[6];
-
-                        return _driver_con.DriverCall(strCon,database,table,itemIterator[7]);                       
+                        string type = ""+itemIterator[7];
+                        
+                        return _driver_con.DriverCall(strCon,database,table,type);                       
                     }
                 }
                 return "Error in load Database, please consult your variables name";

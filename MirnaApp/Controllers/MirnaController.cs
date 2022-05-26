@@ -26,13 +26,13 @@ namespace MirnaApp.controllers
         {
             return "Welcome!! Please crete your Id Key in MirnaWeb.com ";
         }
-        [HttpGet("{token}/{str}")]
+        [HttpGet("{token}/{str}/{query}")]
 
-        public void Get(string token, string str)
+        public void Get(string token, string str,string query)
         {
-            if (usercon.SilverValidate(token) && _memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey))
+            if (usercon.SilverValidate(token) && _memory.TryGetValue(SILVER_KEY, out List<UserContext> silverKey) && query.Length >=4)
             {
-                Response.Redirect("/token/"+token+"/"+str);
+                Response.Redirect("/token/"+token+"/"+str+"/"+query);
             }    
         }
     }
