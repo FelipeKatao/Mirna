@@ -1,4 +1,4 @@
-# MIRNA WEB API PROJECT
+# MIRNA WEB API PROJECT V.1
 [![SecurityCodeScan](https://github.com/FelipeKatao/Mirna/actions/workflows/securitycodescan.yml/badge.svg?branch=ApiMirnaWeb)](https://github.com/FelipeKatao/Mirna/actions/workflows/securitycodescan.yml)
 
 [![CodeQL](https://github.com/FelipeKatao/Mirna/actions/workflows/codeql.yml/badge.svg)](https://github.com/FelipeKatao/Mirna/actions/workflows/codeql.yml)
